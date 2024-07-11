@@ -38,13 +38,13 @@ class TaxCalculatorSpec extends AnyWordSpec {
   // Test if tax payer is of higher rate income or not
   "taxCalculator.isHigherRateTaxPayer" should {
     "return true" when {
-      "tax payer has higher rate income" in {
+      "tax payer has basic rate income" in {
         val result: Boolean = (taxCalculator.isHigherRateTaxPayer(180000))
         result shouldEqual true
       }
     }
     "return false" when {
-      "tax payer has rate income lower than higher rate" in {
+      "tax payer has rate income lower than basic rate" in {
         val result: Boolean = (taxCalculator.isHigherRateTaxPayer(27000))
         result shouldEqual false
       }

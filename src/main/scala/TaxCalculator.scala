@@ -12,7 +12,6 @@ class TaxCalculator {
   private val basicRate: Double = 0.2
   private val higherRate: Double = 0.4
   private val additionalRate: Double = 0.45
-  private val errorMessage: String = "There seems to be an issue here please try again"
 
   // A method to calculate the total amount of tax to be paid, returned as a double
   def calculateTax(income: Double): Double = {
@@ -32,7 +31,7 @@ class TaxCalculator {
 
   // A method which can tell you if someone is a higher rate taxpayer
   def isHigherRateTaxPayer(income: Double): Boolean = {
-    income >= higherRateLimit
+    income > basicRateLimit
   }
 
   // A method that will return a string with the income limit of their current tax band.
