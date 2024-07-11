@@ -11,7 +11,7 @@ class TaxCalculatorSpec extends AnyWordSpec {
       "the income is below the personal tax limit" in {
         val result: Double = taxCalculator.calculateTax(5000)
 
-        assert(result == 0)
+        assert(result == 0.0)
       }
   // Tests for income of basic rate
       "the income is at basic rate tax limit" in {
@@ -39,8 +39,14 @@ class TaxCalculatorSpec extends AnyWordSpec {
   "taxCalculator.isHigherRateTaxpayer" should {
     "return true" when {
       "tax payer has higher rate income" in {
-        val result: Boolean = (taxCalculator.isHigherRateTaxpayer(51000))
-        assert(result)
+        val result: Boolean = (taxCalculator.isHigherRateTaxpayer(180000))
+        result shouldEqual true
+      }
+    }
+      "return false" when {
+      "tax payer has rate income lower than higher rate" in {
+        val result: Boolean = (taxCalculator.isHigherRateTaxpayer(27000))
+        result shouldEqual false
       }
     }
   }

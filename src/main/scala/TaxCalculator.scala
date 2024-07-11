@@ -21,8 +21,6 @@ class TaxCalculator {
     } else if (income <= basicRateLimit) {
       ((income - personalAllowance)) * basicRate
     } else if (income <= higherRateLimit) {
-//      (income - basicRateLimit) * higherRate +
-//        (basicRateLimit - personalAllowanceRate) * basicRate
       (income - basicRateLimit) * higherRate +
         (basicRateLimit - personalAllowance) * basicRate
       } else {
@@ -34,7 +32,7 @@ class TaxCalculator {
 
   // A method which can tell you if someone is a higher rate taxpayer
   def isHigherRateTaxpayer(income: Double): Boolean = {
-    ???
+    income >= higherRateLimit
   }
 
   // A method that will return a string with the income limit of their current tax band.
