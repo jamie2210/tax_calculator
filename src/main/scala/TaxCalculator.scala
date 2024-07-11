@@ -31,14 +31,22 @@ class TaxCalculator {
   }
 
   // A method which can tell you if someone is a higher rate taxpayer
-  def isHigherRateTaxpayer(income: Double): Boolean = {
+  def isHigherRateTaxPayer(income: Double): Boolean = {
     income >= higherRateLimit
   }
 
   // A method that will return a string with the income limit of their current tax band.
   // The return will also be formatted, E.g: "£12,500" or "No limit"
   def formattedCurrentTaxAllowance(income: Double): String = {
-    ???
+    if (income <= personalAllowance) {
+      personalAllowance.toString
+    } else if (income <= basicRateLimit) {
+      basicRateLimit.toString
+    } else if (income <= higherRateLimit) {
+      higherRateLimit.toString
+    } else {
+      "No Limit"
+    }
   }
 
 }
