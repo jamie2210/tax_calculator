@@ -6,7 +6,7 @@ class TaxCalculatorSpec extends AnyWordSpec {
   val taxCalculator: TaxCalculator = new TaxCalculator
 
   // Tests for income below basic rate
-  "TaxCalculator.calculateTax" should {
+  "taxCalculator.calculateTax" should {
     "return the total amount of tax to pay" when {
       "the income is below the personal tax limit" in {
         val result: Double = taxCalculator.calculateTax(5000)
@@ -16,7 +16,7 @@ class TaxCalculatorSpec extends AnyWordSpec {
     }
   }
   // Tests for income of basic rate
-  "TaxCalculator.calculateTax" should {
+  "taxCalculator.calculateTax" should {
     "return the total amount of tax to pay" when {
       "the income is at basic rate tax limit" in {
         val result: Double = taxCalculator.calculateTax(13000)
@@ -26,7 +26,7 @@ class TaxCalculatorSpec extends AnyWordSpec {
     }
   }
   // Tests for income of higher rate
-  "TaxCalculator.calculateTax" should {
+  "taxCalculator.calculateTax" should {
     "return the total amount of tax to pay" when {
       "the income is at higher rate tax limit" in {
         val result: Double = taxCalculator.calculateTax(60000)
@@ -51,6 +51,42 @@ class TaxCalculatorSpec extends AnyWordSpec {
       "tax payer has higher rate income" in {
         val result: Boolean = (taxCalculator.isHigherRateTaxpayer(51000))
         assert(result)
+      }
+    }
+  }
+  // Test to return income limit of personal allowance tax band
+  "taxCalculator.formattedCurrentTaxAllowance" should {
+    "return the basic rate tax bracket" when {
+      "tax payer is below 10,000" in {
+        val result: String = taxCalculator.formattedCurrentTaxAllowance(9000)
+        result == "10,000"
+      }
+    }
+  }
+  // Test to return income limit of basic rate tax band
+  "taxCalculator.formattedCurrentTaxAllowance" should {
+    "return the basic rate tax bracket" when {
+      "tax payer is below 50,000 but above 10,000" in {
+        val result: String = taxCalculator.formattedCurrentTaxAllowance(35000)
+        result == "50,000"
+      }
+    }
+  }
+  // Test to return income limit of higher rate tax band
+  "taxCalculator.formattedCurrentTaxAllowance" should {
+    "return the basic rate tax bracket" when {
+      "tax payer is below 125,000 but above 50,000" in {
+        val result: String = taxCalculator.formattedCurrentTaxAllowance(75000)
+        result == "125,000"
+      }
+    }
+  }
+  // Test to return income limit of higher rate tax band
+  "taxCalculator.formattedCurrentTaxAllowance" should {
+    "return the basic rate tax bracket" when {
+      "tax payer is 125,000 or above" in {
+        val result: String = taxCalculator.formattedCurrentTaxAllowance(180000)
+        result == "No Limit"
       }
     }
   }
