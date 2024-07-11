@@ -13,38 +13,28 @@ class TaxCalculatorSpec extends AnyWordSpec {
 
         assert(result == 0)
       }
-    }
-  }
   // Tests for income of basic rate
-  "taxCalculator.calculateTax" should {
-    "return the total amount of tax to pay" when {
       "the income is at basic rate tax limit" in {
         val result: Double = taxCalculator.calculateTax(13000)
 
-        assert(result == 600)
+        assert(result == 600.0)
       }
     }
   }
   // Tests for income of higher rate
-  "taxCalculator.calculateTax" should {
-    "return the total amount of tax to pay" when {
       "the income is at higher rate tax limit" in {
         val result: Double = taxCalculator.calculateTax(60000)
 
-        assert(result == 12000)
+        assert(result == 12000.0)
       }
-    }
-  }
+
   // Test of income at highest rate
-  "TaxCalculator.calculateTax" should {
-    "return the total amount of tax to pay" when {
       "the income is at highest rate tax limit" in {
         val result: Double = taxCalculator.calculateTax(130000)
 
-        assert(result == 32258)
+        assert(result == 40250.0)
       }
-    }
-  }
+
   // Test if tax payer is of higher rate income or not
   "taxCalculator.isHigherRateTaxpayer" should {
     "return true" when {
@@ -54,6 +44,7 @@ class TaxCalculatorSpec extends AnyWordSpec {
       }
     }
   }
+
   // Test to return income limit of personal allowance tax band
   "taxCalculator.formattedCurrentTaxAllowance" should {
     "return the basic rate tax bracket" when {

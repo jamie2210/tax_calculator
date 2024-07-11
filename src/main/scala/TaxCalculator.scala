@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ErrorMessages
+
 class TaxCalculator {
 
   // Tax bands (simplified to make testing a bit easier)
@@ -10,10 +12,24 @@ class TaxCalculator {
   private val basicRate: Double = 0.2
   private val higherRate: Double = 0.4
   private val additionalRate: Double = 0.45
+  private val errorMessage: String = "There seems to be an issue here please try again"
 
   // A method to calculate the total amount of tax to be paid, returned as a double
   def calculateTax(income: Double): Double = {
-    ???
+    if (income <= 10000) {
+      0.00
+    } else if (income <= basicRateLimit) {
+      ((income - personalAllowance)) * basicRate
+    } else if (income <= higherRateLimit) {
+//      (income - basicRateLimit) * higherRate +
+//        (basicRateLimit - personalAllowanceRate) * basicRate
+      (income - basicRateLimit) * higherRate +
+        (basicRateLimit - personalAllowance) * basicRate
+      } else {
+      (income - higherRateLimit) * additionalRate +
+        (higherRateLimit - basicRateLimit) * higherRate +
+        (basicRateLimit - personalAllowance) * basicRate
+      }
   }
 
   // A method which can tell you if someone is a higher rate taxpayer
