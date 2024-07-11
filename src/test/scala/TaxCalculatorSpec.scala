@@ -45,4 +45,15 @@ class TaxCalculatorSpec extends AnyWordSpec {
       }
     }
   }
+  // Test if tax payer is of higher rate income or not
+  "taxCalculator.isHigherRateTaxpayer" should {
+    "return true" when {
+      "tax payer has higher rate income" in {
+        val result: Boolean = (taxCalculator.isHigherRateTaxpayer(51000))
+        assert(result)
+      }
+    }
+  }
 }
+
+
