@@ -7,7 +7,7 @@ class TaxCalculator {
   private val basicRateLimit: Int = 50000
   private val higherRateLimit: Int = 125000
 
-  // Tax rates
+  // Tax rates!
   private val personalAllowanceRate: Double = 0
   private val basicRate: Double = 0.2
   private val higherRate: Double = 0.4
@@ -47,5 +47,4 @@ class TaxCalculator {
       "No Limit"
     }
   }
-
 }
